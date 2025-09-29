@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For Khaya ❤️</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ffe6f0, #ffd1c1);
+      text-align: center;
+      color: #333;
+      padding: 30px;
+      overflow-x: hidden;
+      transition: background 1s;
+    }
+    h1 { font-size: 2.5em; margin-bottom: 20px; }
+    p { font-size: 1.2em; }
+    .note {
+      background: white;
+      border-radius: 12px;
+      padding: 15px;
+      margin: 10px;
+      display: inline-block;
+      cursor: pointer;
+      transition: transform 0.2s, opacity 0.5s;
+      opacity: 0;
+    }
+    .note.visible { opacity: 1; }
+    .note:hover { transform: scale(1.05); background: #ffe6f0; }
+
+    .hidden { display: none; margin-top: 10px; font-style: italic; color: #555; }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: #ff5e78;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    button:hover { background: #e44e68; }
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      font-size: 24px;
+      color: #ff5e78;
+      animation: float 4s ease-out forwards;
+      pointer-events: none;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-300px) scale(1.5); opacity: 0; }
+    }
+
+    /* Surprise message glow */
+    #surprise {
+      font-style: italic;
+      color: #ff2e6d;
+      display: block;
+      margin-top: 20px;
+      min-height: 1.5em;
+      text-shadow: 0 0 10px #ff2e6d;
+    }
+
+    #music-button-container { margin-top: 50px; }
+
+  </style>
+</head>
+<body>
+  <!-- Background music -->
+  <audio id="bg-music" src="love-song.mp3" autoplay loop></audio>
+
+  <h1>Hi Khaya ❤️</h1>
+  <p>I made this little page just for you… 💌</p>
+
+  <!-- Notes -->
+  <div class="note" id="note1" onclick="toggleNoteText('note1-text')">💌 Open Note 1</div>
+  <div id="note1-text" class="hidden">I may not see you everyday but I love you everyday 💖</div>
+
+  <div class="note" id="note2" onclick="toggleNoteText('note2-text')">💌 Open Note 2</div>
+  <div id="note2-text" class="hidden">I promise to always be by your side… or under you… or on top 😏</div>
+
+  <div class="note" id="note3" onclick="toggleNoteText('note3-text')">💌 Open Note 3</div>
+  <div id="note3-text" class="hidden">You’re my favorite distraction, and I love every second of it ✨</div>
+
+  <div class="note" id="note4" onclick="toggleNoteText('note4-text')">💌 Open Note 4</div>
+  <div id="note4-text" class="hidden">I am obsessed with you ❤️‍🔥</div>
+
+  <div class="note" id="note5" onclick="toggleNoteText('note5-text')">💌 Open Note 5</div>
+  <div id="note5-text" class="hidden">Making memories with you is my favourite thing to do 🥰</div>
+
+  <div class="note" id="note6" onclick="toggleNoteText('note6-text')">💌 Open Note 6</div>
+  <div id="note6-text" class="hidden">I really wanna be your wife one day 💍</div>
+
+  <!-- Play/Pause music button at the bottom -->
+  <div id="music-button-container">
+    <button onclick="document.getElementById('bg-music').paused ? document.getElementById('bg-music').play() : document.getElementById('bg-music').pause()">
+      ▶️/⏸️ Play/Pause Music
+    </button>
+  </div>
+
+  <!-- Surprise button under music button -->
+  <button id="surprise-button" onclick="toggleSurprise()">💌 Open Me</button>
+  <p id="surprise" class="hidden"></p>
+
+  <script>
+    // Fade-in notes on page load
+    document.querySelectorAll('.note').forEach((note, index) => {
+      setTimeout(() => note.classList.add('visible'), index * 300);
+    });
+
+    function toggleNoteText(id) {
+      const noteText = document.getElementById(id);
+      noteText.style.display = noteText.style.display === "block" ? "none" : "block";
+    }
+
+    let surpriseVisible = false;
+
+    function toggleSurprise() {
+      const surprise = document.getElementById("surprise");
+      const button = document.getElementById("surprise-button");
+
+      if (!surpriseVisible) {
+        // Show surprise
+        surprise.style.display = "block";
+        surprise.innerHTML = "";
+        surpriseVisible = true;
+
+        // Background glow
+        document.body.style.background = "linear-gradient(135deg, #ffdde1, #ff9fc1)";
+
+        // Typing effect
+        
+ const message = "I love you more than words can say.\n" +
+        "I love listening to you, I love looking at you.\n" +
+        "I love learning about you.\n" +
+        "I love your beautiful eyes and your perfect smile.\n" +
+        "I love your sweet kisses and your warm hugs.\n" +
+        "I love your sweet and adorable personality.\n" +
+        "Every moment with you is my favorite, and I promise to always cherish, support, and adore you.\n" +
+        "I will choose you even when we fight, when you make me mad or annoy me and I will never stop loving you.\n"+
+       "I will love you through every high and low, every smile and tear.\n"+
+        "I'm really glad I met you and I woudn't trade that for the world.\n"+
+        "Forever yours, Khaya Skhosana💕"
+
+        "";
+        let i = 0;
+        function typeWriter() {
+          if (i < message.length) {
+            surprise.innerHTML += message.charAt(i);
+            i++;
+            setTimeout(typeWriter, 100);
+          }
+        }
+        typeWriter();
+
+        // Heart burst
+        for (let j = 0; j < 40; j++) {
+          setTimeout(createHeart, j * 100);
+        }
+
+      } else {
+        // Hide surprise
+        surprise.style.display = "none";
+        surprise.innerHTML = "";
+        surpriseVisible = false;
+
+        // Reset background
+        document.body.style.background = "linear-gradient(135deg, #ffe6f0, #ffd1c1)";
+      }
+    }
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.innerText = '❤️';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.fontSize = (14 + Math.random() * 26) + 'px';
+      heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 4000);
+    }
+  </script>
+</body>
+</html>

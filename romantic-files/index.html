@@ -63,6 +63,7 @@
       margin-top: 20px;
       min-height: 1.5em;
       text-shadow: 0 0 10px #ff2e6d;
+      white-space: pre-line; /* preserves line breaks */
     }
 
     #music-button-container { margin-top: 50px; }
@@ -78,36 +79,48 @@
 
   <!-- Notes -->
   <div class="note" id="note1" onclick="toggleNoteText('note1-text')">💌 Open Note 1</div>
-  <div id="note1-text" class="hidden">Little moments with you already feel special… and I can’t get enough 🥰</div>
+  <div id="note1-text" class="hidden">
+    Little moments with you already feel special… and I can’t get enough 🥰 💖
+  </div>
 
   <div class="note" id="note2" onclick="toggleNoteText('note2-text')">💌 Open Note 2</div>
-  <div id="note2-text" class="hidden">random thought… i really like knowing you’re mine. mine, mine, and only mine…</div>
+  <div id="note2-text" class="hidden">
+    random thought… I really like knowing you’re mine. mine, mine, and only mine…
+  </div>
 
   <div class="note" id="note3" onclick="toggleNoteText('note3-text')">💌 Open Note 3</div>
-  <div id="note3-text" class="hidden">You’re my favorite distraction, and I love every second of it ✨</div>
+  <div id="note3-text" class="hidden">
+    You’re my favorite distraction, and I love every second of it ✨
+  </div>
 
   <div class="note" id="note4" onclick="toggleNoteText('note4-text')">💌 Open Note 4</div>
-  <div id="note4-text" class="hidden">I can’t stop thinking about how much I like you which is just crazy to me. I find myself just thinking about you and smiling like a fool </div>
+  <div id="note4-text" class="hidden">
+    I can’t stop thinking about how much I like you which is just crazy to me. I find myself just thinking about you and smiling like a fool 😍
+  </div>
 
   <div class="note" id="note5" onclick="toggleNoteText('note5-text')">💌 Open Note 5</div>
-  <div id="note5-text" class="hidden">I promise to always be by your side… or under you… or on top 😏</div>
+  <div id="note5-text" class="hidden">
+    I promise to always be by your side… or under you… or on top 😏
+  </div>
 
   <div class="note" id="note6" onclick="toggleNoteText('note6-text')">💌 Open Note 6</div>
-  <div id="note6-text" class="hidden">i swear i’m not even trying to like you this much… but somehow i do</div>
+  <div id="note6-text" class="hidden">
+    I swear I’m not even trying to like you this much… but somehow I do 💕
+  </div>
 
-  <!-- Play/Pause music button at the bottom -->
+  <!-- Play/Pause music button -->
   <div id="music-button-container">
     <button onclick="document.getElementById('bg-music').paused ? document.getElementById('bg-music').play() : document.getElementById('bg-music').pause()">
       ▶️/⏸️ Play/Pause Music
     </button>
   </div>
 
-  <!-- Surprise button under music button -->
+  <!-- Surprise button -->
   <button id="surprise-button" onclick="toggleSurprise()">💌 Open Me</button>
   <p id="surprise" class="hidden"></p>
 
   <script>
-    // Fade-in notes on page load
+    // Fade-in notes
     document.querySelectorAll('.note').forEach((note, index) => {
       setTimeout(() => note.classList.add('visible'), index * 300);
     });
@@ -124,37 +137,35 @@
       const button = document.getElementById("surprise-button");
 
       if (!surpriseVisible) {
-        // Show surprise
         surprise.style.display = "block";
         surprise.innerHTML = "";
         surpriseVisible = true;
 
-        // Background glow
+        // Change background
         document.body.style.background = "linear-gradient(135deg, #ffdde1, #ff9fc1)";
 
-        // Typing effect
-        
- const message = " I know we’ve literally only been dating a few days and lol i didn’t even think i’d be into anyone right now but then there’s you…\n" +
+        const message = "I know we’ve literally only been dating a few days and lol I didn’t even think I’d be into anyone right now but then there’s you…\n" +
         "I love listening to you, I love looking at you.\n" +
         "I love learning about you.\n" +
         "I love your beautiful eyes and your perfect smile.\n" +
         "I love your sweet kisses and your warm hugs.\n" +
         "I love your sweet and adorable personality.\n" +
         "Every moment with you is my favorite, and I promise to always cherish, support, and adore you.\n" +
-        "I will choose you even when we fight, when you make me mad or annoy me \n"+
-       "ugh you’re trouble. the kind i actually like. the kind that makes me blush, laugh, and feel all giddy at once i don’t even know what the future holds but honestly… i’m kinda excited? nervous? probably both lo\n"+
-   "💕";
+        "I will choose you even when we fight, when you make me mad or annoy me \n" +
+        "ugh you’re trouble. the kind I actually like. the kind that makes me blush, laugh, and feel all giddy at once i don’t even know what the future holds but honestly… i’m kinda excited? nervous? probably both lo\n" +
+        "💕";
+
         let i = 0;
         function typeWriter() {
           if (i < message.length) {
             surprise.innerHTML += message.charAt(i);
             i++;
-            setTimeout(typeWriter, 100);
+            setTimeout(typeWriter, 50); // speed of typing
           }
         }
         typeWriter();
 
-        // Heart burst
+        // Floating hearts
         for (let j = 0; j < 40; j++) {
           setTimeout(createHeart, j * 100);
         }
@@ -185,4 +196,5 @@
 </html>
 
 
-
+ 
+          
